@@ -18,15 +18,15 @@ projects:
     desc: 找到孙
     link: https://user.qzone.qq.com/3296785939
 
-  - icon: book
-    name: book name
-    desc: Detailed description of the book
-    link: https://link.to.your.book
+  - icon: hope妈
+    name: hope妈妈
+    desc: 梦开始的地方
+    link: https://mrhope.site/
 
-  - icon: article
-    name: article name
-    desc: Detailed description of the article
-    link: https://link.to.your.article
+  - icon: vuepress
+    name: vuepress
+    desc: 本博客的vuepress
+    link: https://vuepress-theme-hope.gitee.io/v2/zh/
 
   - icon: friend
     name: friend name
