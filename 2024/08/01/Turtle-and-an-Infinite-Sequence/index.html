@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="google-site-verification" content="TZE0rZyIqLl10trYu3BWBWa1Vmz6HFwhb2OcNEK4u-s" />
+     <link rel="shortcut icon" href= /img/favicon.ico >
+    <title>
+        小刘与大陈
+    </title>
+    <meta name="description" content= 感谢刘训灼大佬 >
+    <meta name="keywords" content= Blog,Hexo,Theme,刘训灼,LiuXunzhuo >
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-home
+ replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Turtle and an Infinite Sequence
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h1 id="Turtle-and-an-Infinite-Sequence"><a href="#Turtle-and-an-Infinite-Sequence" class="headerlink" title="Turtle and an Infinite Sequence"></a>Turtle and an Infinite Sequence</h1><p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/problem/B">原题链接</a><br>这道题是一道位运算的题,比较容易,但要实现比较复杂,对初学位运算的同学来讲比较有挑战性</p>
+<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>There is a sequence a0,a1,a2,… of infinite length. Initially ai&#x3D;i for every non-negative integer i.<br>After every second, each element of the sequence will imultaneously change. ai will change to ai−1∣ai∣ai+1 for every positive integer i. a0 will change to a0∣a1. Here, | denotes bitwise OR.</p>
+<p>Turtle is asked to find the value of an after m seconds. In particular, if m&#x3D;0, then he needs to find the initial value of an. He is tired of calculating so many values, so please help him!</p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>Each test contains multiple test cases. The first line ontains the number of test cases t (1≤t≤104). The escription of the test cases follows.</p>
+<p>The first line of each test case contains two integers n,m (0≤n,m≤109).</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>For each test case, output a single integer — the value of an after m seconds.</p>
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><h3 id="Input-1"><a href="#Input-1" class="headerlink" title="Input"></a>Input</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">9</span><br><span class="line">0 0</span><br><span class="line">0 1</span><br><span class="line">0 2</span><br><span class="line">1 0</span><br><span class="line">5 2</span><br><span class="line">10 1</span><br><span class="line">20 3</span><br><span class="line">1145 14</span><br><span class="line">19198 10</span><br></pre></td></tr></table></figure>
+<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">1</span><br><span class="line">3</span><br><span class="line">1</span><br><span class="line">7</span><br><span class="line">11</span><br><span class="line">23</span><br><span class="line">1279</span><br><span class="line">19455</span><br></pre></td></tr></table></figure>
+<h3 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h3><p>After 1 second, [a0,a1,a2,a3,a4,a5] will become [1,3,3,7,7,7].</p>
+<p>After 2 seconds, [a0,a1,a2,a3,a4,a5] will become [3,3,7,7,7,7].</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>朴素的暴力(从n - m 到n + m遍历或运算)会超时,那么我们自然想到了要通过对每一位进行处理来得出答案<br>解决本题要按位处理,对每一位是零还是一做判断即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">// 该函数用于截取取从第l位到第r位的二进制数的十进制形式</span><br><span class="line">int getnum(vector&lt;int&gt; n, int l, int r)</span><br><span class="line">&#123;</span><br><span class="line">    int res = 0;</span><br><span class="line">    for(int i = l; i &gt;= r; i -- )</span><br><span class="line">    &#123;</span><br><span class="line">        res = res * 2 + n[i];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">void solve()</span><br><span class="line">&#123;</span><br><span class="line">	int n, m;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	</span><br><span class="line">	int temp = n;</span><br><span class="line">	</span><br><span class="line">	vector&lt;int&gt; num;</span><br><span class="line">	// 这里用于将n这个十进制数用二进制数组存起来</span><br><span class="line">    // 存储顺序是从0到num.size()从二进制的低位到高位</span><br><span class="line">    while(n)</span><br><span class="line">    &#123;</span><br><span class="line">        num.push_back(n % 2);</span><br><span class="line">        n /= 2;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 处理一下n + m的情况,因为如果n + m的最高位高于n的最高位,则从n + m的最高位到最低位一定全是1</span><br><span class="line">    n = temp + m;</span><br><span class="line">    </span><br><span class="line">    vector&lt;int&gt; num2;</span><br><span class="line">	</span><br><span class="line">    while(n)</span><br><span class="line">    &#123;</span><br><span class="line">        num2.push_back(n % 2);</span><br><span class="line">        n /= 2;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 特判刚刚所说的情况</span><br><span class="line">    if(num2.size() &gt; num.size())</span><br><span class="line">    &#123;</span><br><span class="line">    	int res = 0;</span><br><span class="line">    	for(int i = num2.size() - 1; i &gt;= 0; i -- )</span><br><span class="line">    	&#123;</span><br><span class="line">    		res *= 2;</span><br><span class="line">    		res += 1;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">		</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	n = num.size();</span><br><span class="line">	</span><br><span class="line">	int res = 0;</span><br><span class="line">    // 从最高位到最低位逐个检查是1是0,处理res为最终答案</span><br><span class="line">	for(int i = n - 1; i &gt;= 0; i -- )</span><br><span class="line">	&#123;</span><br><span class="line">		res *= 2;</span><br><span class="line">		// 最高位的1一定存在啊</span><br><span class="line">		if(i == n - 1)</span><br><span class="line">		&#123;</span><br><span class="line">			res += 1;</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">        // 如果当前位是1就res + 1</span><br><span class="line">		if(num[i] == 1)</span><br><span class="line">		&#123;</span><br><span class="line">			res += 1;</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">        // k是n的第i位以下的数的十进制形式</span><br><span class="line">		int k = getnum(num, i - 1, 0);</span><br><span class="line">        // k1是二进制第i位的十进制形式</span><br><span class="line">		int k1 = 1 &lt;&lt; i;</span><br><span class="line"></span><br><span class="line">        // 如果可以通过加法加到第i位的1</span><br><span class="line">		if(m &gt;= k1 - k)</span><br><span class="line">		&#123;</span><br><span class="line">			res += 1;</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        // 如果通过减法减到第i位的1也可以</span><br><span class="line">		if(m &gt;= k + 1)</span><br><span class="line">		&#123;</span><br><span class="line">			res += 1;</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int t;</span><br><span class="line">	cin &gt;&gt; t;</span><br><span class="line">	while(t -- )</span><br><span class="line">	&#123;</span><br><span class="line">		solve();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+        <hr class="fhr">
+        <div id="vcomments"></div>
+    
+</div>
+    <div class="footer" id="footer">
+    <p><h4>Copyright © 2020 | Author: 小刘与大陈 | Theme By <a class="theme-author" target="_blank" rel="noopener" href="https://github.com/Xunzhuo/hexo-theme-coder" style="font-size:14px; color: #969696">Coder</a></h4>
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">Page Views: <span id="busuanzi_value_site_pv"></span></span>
+        <span class="post-meta-divider">|</span>
+        <span id="busuanzi_container_site_uv">Unique Visitors: <span id="busuanzi_value_site_uv"></span></span>
+    
+    <label class="el-switch el-switch-blue el-switch-sm" style="vertical-align: sub;">
+        <input type="checkbox" name="switch" id="update_style">
+        <span class="el-switch-style"></span>
+    </label>
+
+    <!--         <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script> -->
+</p>
+</div>
+
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="">
+<input type="hidden" id="valine_appKey" value="">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+color: #698fca;
+}
+.v .vlist .vcard .vhead .vsys {
+color: #3a3e4a;
+}
+.v .vlist .vcard .vh .vmeta .vat {
+color: #638fd5;
+}
+.v .vlist .vcard .vhead .vnick {
+color: #6ba1ff;
+}
+.v a {
+color: #8696b1;
+}
+.v .vlist .vcard .vhead .vnick:hover {
+color: #669bfc;
+}
+</style>
+    <script type="text/javascript" color="173,174,173" opacity='1' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>
